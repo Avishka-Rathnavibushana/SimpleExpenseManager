@@ -16,6 +16,7 @@
 
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,10 +24,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.R;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.ExpenseManager;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static lk.ac.mrt.cse.dbs.simpleexpensemanager.Constants.EXPENSE_MANAGER;
 /**
  *
@@ -91,6 +94,11 @@ public class AddAccountFragment extends Fragment implements View.OnClickListener
 
                 if (initialBalanceStr.isEmpty()) {
                     initialBalance.setError(getActivity().getString(R.string.err_init_balance_empty));
+                    break;
+                }
+
+                if (currentExpenseManager.getAccountNumbersList().contains(accountNumStr) || accountNumStr.equals("This user already exist")){
+                    accountNumber.setText("This user already exist");
                     break;
                 }
 
